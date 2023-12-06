@@ -115,8 +115,8 @@ public class DataOverviewServiceImpl implements IDataOverviewService {
      * 获取数据概况表格数据
      */
     @Override
-    public List<GameGeneralizeVo> getDataProfilingTableData() {
-        return gameTriggerMapper.getCountAll(CommonNum.THREE);
+    public List<GameGeneralizeVo> getDataProfilingTableData(Integer orderType) {
+        return gameTriggerMapper.getCountAll(CommonNum.THREE, orderType);
     }
 
 

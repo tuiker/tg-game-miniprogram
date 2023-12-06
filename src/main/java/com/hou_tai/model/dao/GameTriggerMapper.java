@@ -32,5 +32,5 @@ public interface GameTriggerMapper extends BaseMapper<GameTrigger> {
      * @param type 触发类型
      * @return
      */
-    List<GameGeneralizeVo> getCountAll(int type);
+    List<GameGeneralizeVo> getCountAll(int type, Integer orderType);
 }

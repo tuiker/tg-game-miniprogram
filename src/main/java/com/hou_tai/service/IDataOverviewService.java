@@ -24,6 +24,6 @@ public interface IDataOverviewService {
     /**
      * 获取数据概况表格数据
      */
-    List<GameGeneralizeVo> getDataProfilingTableData();
+    List<GameGeneralizeVo> getDataProfilingTableData(Integer orderType);
 
 }

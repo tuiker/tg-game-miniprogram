@@ -41,9 +41,10 @@ public class DataOverviewController {
     }
 
     @Operation(summary = "获取数据概况表格数据", description = "获取数据概况表格数据")
+    @Parameter(name = "orderType", description = "排序类型  1：按游戏添加时间降序，2：按导流次数降序")
     @GetMapping("/getDataProfilingTableData")
-    public ResultVO<List<GameGeneralizeVo>> getAllStates() {
-        return ResultVO.success(dataOverviewService.getDataProfilingTableData());
+    public ResultVO<List<GameGeneralizeVo>> getAllStates(@RequestParam("orderType") Integer orderType) {
+        return ResultVO.success(dataOverviewService.getDataProfilingTableData(orderType));
     }
 
 

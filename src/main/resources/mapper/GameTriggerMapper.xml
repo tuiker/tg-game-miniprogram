@@ -47,6 +47,12 @@
         GROUP BY
             g.id
         ORDER BY
-            openNum DESC
+            <if test="null != orderType and orderType == 1 ">
+                g.create_time DESC
+            </if>
+            <if test="null != orderType and orderType == 2 ">
+                openNum DESC
+            </if>
+
     </select>
 </mapper>
