@@ -4,7 +4,7 @@ import com.hou_tai.common.enums.CountryLanguageEnum;
 import com.hou_tai.common.response.ResultVO;
 import com.hou_tai.common.vo.PageResult;
 import com.hou_tai.controller.mobile.dto.GamePageReqDTO;
-import com.hou_tai.controller.mobile.dto.PointDto;
+import com.hou_tai.controller.mobile.dto.PointDTO;
 import com.hou_tai.controller.mobile.vo.MobileGameVO;
 import com.hou_tai.service.IGameService;
 import com.hou_tai.service.IGameTriggerService;
@@ -55,7 +55,7 @@ public class MobileGameController {
 
     @Operation(summary = "新增埋点数据", description = "触发类型 2下载3打开")
     @PostMapping("/addPointNum")
-    public ResultVO addPointNum(@RequestBody PointDto dto) {
+    public ResultVO addPointNum(@RequestBody PointDTO dto) {
         return gameTriggerService.insertByPoint(dto);
     }
 

@@ -2,7 +2,7 @@ package com.hou_tai.controller.pc;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hou_tai.controller.pc.dto.GameAddReqDTO;
-import com.hou_tai.controller.pc.dto.GameDto;
+import com.hou_tai.controller.pc.dto.GameDTO;
 import com.hou_tai.controller.pc.dto.GameUpdateReqDTO;
 import com.hou_tai.model.pojo.Game;
 import com.hou_tai.common.response.ResultVO;
@@ -53,7 +53,7 @@ public class GameController {
      */
     @Operation(summary = "分页查询")
     @GetMapping("/page")
-    public ResultVO<Page<GameVO>> paginQuery(@ParameterObject GameDto dto){
+    public ResultVO<Page<GameVO>> paginQuery(@ParameterObject GameDTO dto){
         //1.分页参数
         Page<GameVO> page = gameService.paginQuery(dto);
         return ResultVO.success(page);

@@ -22,7 +22,6 @@ import java.util.regex.Pattern;
  * @Description: 根据IP获取国家地址
  */
 @Slf4j
-@Component
 public class IPCountryUtil {
 
     private static final HashMap<Long, Integer> maxIpMap = new HashMap<>();

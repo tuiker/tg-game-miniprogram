@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Data
 @Schema(title = "用户信息", description = "用户信息对象")
-public class UserInfoVo {
+public class UserInfoVO {
     @Schema(title = "Id", description = "用户Id", name = "id")
     private long id;
     @Schema(title = "昵称", description = "用户昵称", name = "userName")

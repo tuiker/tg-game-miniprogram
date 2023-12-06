@@ -7,7 +7,7 @@ import com.hou_tai.common.enums.ResultCode;
 import com.hou_tai.controller.pc.dto.UserLoginReqDTO;
 import com.hou_tai.model.redis.LoginUserRedisDAO;
 import com.hou_tai.common.response.ResultVO;
-import com.hou_tai.controller.pc.vo.UserInfoVo;
+import com.hou_tai.controller.pc.vo.UserInfoVO;
 import com.hou_tai.controller.pc.vo.UserLoginRespVO;
 import com.hou_tai.service.IUserInfoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -63,7 +63,7 @@ public class LoginController {
 
     @Operation(summary = "获取我的个人信息")
     @GetMapping("/getMyUserInfo")
-    public ResultVO<UserInfoVo> getMyUserInfo() {
+    public ResultVO<UserInfoVO> getMyUserInfo() {
         Long loginUserId = SecurityUtils.getLoginUserId();
         return ResultVO.success(userInfoService.getUserInfoById(loginUserId));
     }

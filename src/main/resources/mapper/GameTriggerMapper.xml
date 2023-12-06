@@ -14,7 +14,7 @@
         GROUP BY category
         ORDER BY category
     </select>
-    <select id="getNumForSevenDay" resultType="com.hou_tai.controller.pc.vo.DataOfTimeVo">
+    <select id="getNumForSevenDay" resultType="com.hou_tai.controller.pc.vo.DataOfTimeVO">
         SELECT COUNT(1) num,
                date_format(create_time, '%Y-%m-%d') time
         FROM
@@ -30,7 +30,7 @@
         GROUP BY
             time
     </select>
-    <select id="getCountAll" resultType="com.hou_tai.controller.pc.vo.GameGeneralizeVo">
+    <select id="getCountAll" resultType="com.hou_tai.controller.pc.vo.GameGeneralizeVO">
         SELECT
             g.id,
             g.game_name,

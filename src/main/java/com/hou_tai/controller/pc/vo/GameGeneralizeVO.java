@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @Data
 @Schema(title = "游戏概括返回对象")
-public class GameGeneralizeVo {
+public class GameGeneralizeVO {
     @Schema(title = "游戏ID", description = "游戏ID", name = "id")
     private Long id;
     @Schema(title = "游戏分类", description = "游戏分类", name = "gameCategory")

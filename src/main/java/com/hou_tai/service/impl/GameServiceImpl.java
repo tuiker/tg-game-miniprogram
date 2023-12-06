@@ -14,7 +14,7 @@ import com.hou_tai.common.vo.PageResult;
 import com.hou_tai.controller.mobile.dto.GamePageReqDTO;
 import com.hou_tai.controller.mobile.vo.MobileGameVO;
 import com.hou_tai.controller.pc.dto.GameAddReqDTO;
-import com.hou_tai.controller.pc.dto.GameDto;
+import com.hou_tai.controller.pc.dto.GameDTO;
 import com.hou_tai.controller.pc.dto.GameUpdateReqDTO;
 import com.hou_tai.model.dao.GameMapper;
 import com.hou_tai.model.pojo.*;
@@ -22,7 +22,6 @@ import com.hou_tai.controller.pc.vo.GameVO;
 import com.hou_tai.service.*;
 import com.hou_tai.common.util.SystemNumUtil;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -81,7 +80,7 @@ public class GameServiceImpl extends ServiceImpl<GameMapper, Game> implements IG
      * @param dto 筛选条件
      * @return
      */
-    public Page<GameVO> paginQuery(GameDto dto) {
+    public Page<GameVO> paginQuery(GameDTO dto) {
         MPJLambdaWrapper<Game> mpjLambdaWrapper = new MPJLambdaWrapper<Game>()
                 .selectAll(Game.class)
                 .select("l.language_name, u.user_name AS creator")

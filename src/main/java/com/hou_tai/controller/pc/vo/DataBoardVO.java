@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Data
 @Schema(title = "数据概览看板出参")
-public class DataBoardVo implements Serializable {
+public class DataBoardVO implements Serializable {
 
     @Schema(title = "热门推荐导流总数", description = "热门推荐导流总数", name = "hotSum")
     private Integer hotSum = 0;
@@ -39,10 +39,10 @@ public class DataBoardVo implements Serializable {
 
 
     @Schema(title = "过去七日内热门推荐导流折线图数据", description = "过去七日内热门推荐导流折线图数据", name = "hotDataOfTime")
-    private List<DataOfTimeVo> hotDataOfTime;
+    private List<DataOfTimeVO> hotDataOfTime;
     @Schema(title = "过去七日内大家都在玩导流折线图数据", description = "过去七日内大家都在玩导流折线图数据", name = "everyOneIsPlayingDataOfTime")
-    private List<DataOfTimeVo> everyOneIsPlayingDataOfTime;
+    private List<DataOfTimeVO> everyOneIsPlayingDataOfTime;
     @Schema(title = "过去七日内巴西电子导流折线图数据", description = "过去七日内巴西电子导流折线图数据", name = "brazilElectronDataOfTime")
-    private List<DataOfTimeVo> brazilElectronDataOfTime;
+    private List<DataOfTimeVO> brazilElectronDataOfTime;
 
 }
