@@ -27,10 +27,11 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         Long loginUserId = SecurityUtils.getLoginUserId();
         List<SysMenuRespVO> list;
         if(loginUserId == CommConstant.ADMIN_ID){
-            list = BeanUtil.copyToList(this.list(), SysMenuRespVO.class);
+            list = BeanUtil.copyToList(this.lambdaQuery().orderByAsc(SysMenu::getSort).list(), SysMenuRespVO.class);
         }else {
             list = baseMapper.getSysMenuListByUserId(loginUserId);
         }
         return list;
     }
+
 }
