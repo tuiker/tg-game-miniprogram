@@ -2,10 +2,10 @@ package com.hou_tai.auth.filter;
 
 import cn.hutool.core.util.StrUtil;
 import com.hou_tai.auth.entity.LoginUser;
+import com.hou_tai.common.response.ResultVO;
 import com.hou_tai.common.util.SecurityUtils;
 import com.hou_tai.common.util.ServletUtils;
 import com.hou_tai.model.redis.LoginUserRedisDAO;
-import com.hou_tai.common.response.ResponseData;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -46,7 +46,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
             if(Objects.isNull(loginUser)){//未获取到用户信息：无效token
                 //写入错误码401至response响应
-                ServletUtils.writeJSON(response, ResponseData.error(UNAUTHORIZED));
+                ServletUtils.writeJSON(response, ResultVO.error(UNAUTHORIZED));
                 return;
             }
 

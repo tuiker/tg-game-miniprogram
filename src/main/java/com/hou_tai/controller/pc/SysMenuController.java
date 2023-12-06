@@ -2,7 +2,6 @@ package com.hou_tai.controller.pc;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.hou_tai.common.constant.CommConstant;
-import com.hou_tai.common.response.ResponseData;
 import com.hou_tai.common.response.ResultVO;
 import com.hou_tai.controller.pc.vo.SysMenuRespVO;
 import com.hou_tai.service.ISysMenuService;
@@ -34,7 +33,7 @@ public class SysMenuController {
     @Operation(summary = "根据用户获取它的权限列表")
     @GetMapping("/getList")
     public ResultVO<List<SysMenuRespVO>> getSysMenuList(){
-        return ResponseData.success(generateTree(sysMenuService.getSysMenuList()));
+        return ResultVO.success(generateTree(sysMenuService.getSysMenuList()));
     }
 
     /**

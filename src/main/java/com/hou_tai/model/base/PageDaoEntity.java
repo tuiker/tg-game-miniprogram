@@ -13,8 +13,8 @@ import java.io.Serializable;
 @Data
 public class PageDaoEntity implements Serializable {
     //页
-    @Schema(title = "页", description = "第几页，默认1", name = "page", defaultValue = "1")
+    @Schema(title = "页", description = "第几页，默认1", name = "page", defaultValue = "1", type = "Integer")
     private int page;
-    @Schema(title = "条", description = "一页多少条", name = "pageSize", defaultValue = "10")
+    @Schema(title = "条", description = "一页多少条", name = "pageSize", defaultValue = "10", type = "Integer")
     private int pageSize;
 }

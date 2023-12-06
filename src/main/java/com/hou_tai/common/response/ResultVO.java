@@ -2,6 +2,7 @@ package com.hou_tai.common.response;
 
 import com.hou_tai.common.enums.ResultCode;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Schema(title = "返回", description = "返回对象")
 public class ResultVO<T> {
 
@@ -32,31 +34,30 @@ public class ResultVO<T> {
         this.data = data;
     }
 
-    public ResultVO(T data) {
-        this(ResultCode.SUCCESS, data);
+    public ResultVO(ResultCode resultCode) {
+        this.code = resultCode.getCode();
+        this.msg = resultCode.getMsg();
     }
 
-    public ResultVO<T> setCodeAndMsg(ResultCode resultsCode) {
-        this.code = resultsCode.getCode();
-        this.msg = resultsCode.getMsg();
-        return this;
+    public static <T> ResultVO<T> success(T data){
+        return new ResultVO<>(ResultCode.SUCCESS, data);
     }
 
-    public ResultVO<T> setCode(int code) {
-        this.code = code;
-        return this;
+    public static <T> ResultVO<T> success(String msg, T data){
+        return new ResultVO<>(ResultCode.SUCCESS.getCode(), msg, data);
     }
 
-    public ResultVO<T> setMsg(String msg) {
-        this.msg = msg;
-        return this;
+    public static <T> ResultVO<T> error(String msg){
+        return new ResultVO<>(ResultCode.ERROR.getCode(), msg, null);
     }
 
-    public ResultVO<T> setData(T data) {
-        this.data = data;
-        return this;
+    public static <T> ResultVO<T> error(ResultCode resultCode){
+        return new ResultVO<>(resultCode);
     }
 
+    public static <T> ResultVO<T> error(Integer code, String msg){
+        return new ResultVO<>(code, msg, null);
+    }
 
     @Override
     public String toString() {

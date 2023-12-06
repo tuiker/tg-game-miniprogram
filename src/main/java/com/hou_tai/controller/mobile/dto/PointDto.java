@@ -1,4 +1,4 @@
-package com.hou_tai.controller.pc.dto;
+package com.hou_tai.controller.mobile.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -20,6 +20,6 @@ public class PointDto {
     @Schema(title = "触发类型 2下载3打开")
     private Integer triggerType;
 
-    @Schema(title = "APK包名", description = "triggerType为3时，添加对应apkName", name = "apkName")
-    private String apkName;
+    @Schema(title = "导流分类 1：热门推荐，2：大家都在玩，3：巴西电子")
+    private Integer category;
 }

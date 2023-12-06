@@ -30,13 +30,14 @@ CREATE TABLE `tg-game-miniprogram`.`game`  (
 -- Table structure for game_trigger
 -- ----------------------------
 DROP TABLE IF EXISTS `tg-game-miniprogram`.`game_trigger`;
-CREATE TABLE `tg-game-miniprogram`.`game_trigger`  (
-                                                       `id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
-                                                       `game_id` bigint NOT NULL COMMENT '游戏ID',
-                                                       `type` int NOT NULL COMMENT '类型 对应枚举1下载2打开',
-                                                       `create_time` datetime NULL DEFAULT NULL,
-                                                       PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 722 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '游戏触发记录表' ROW_FORMAT = Dynamic;
+CREATE TABLE `tg-game-miniprogram`.`game_trigger` (
+                                `id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
+                                `game_id` bigint NOT NULL COMMENT '游戏ID',
+                                `type` int NOT NULL COMMENT '类型 对应枚举1下载2打开',
+                                `category` tinyint NOT NULL COMMENT '导流分类 1：热门推荐，2：大家都在玩，3：巴西电子',
+                                `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+                                PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=722 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC COMMENT='游戏触发记录表';
 
 -- ----------------------------
 -- Records of game_trigger

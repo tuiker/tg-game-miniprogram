@@ -1,21 +1,24 @@
-package com.hou_tai.controller.pc.dto;
+package com.hou_tai.controller.mobile.vo;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+ * @ClassName: MobileGameVo
+ * @Description: 移动端游戏输出
+ * @Author: Sam
+ * @Date: 2023-11-04 11:52
+ * @Version: 1.0
+ **/
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@Schema(title = "游戏修改请求 DTO")
-public class GameUpdateReqDTO implements Serializable {
-
+@Schema(title = "移动端游戏输出")
+public class MobileGameVO {
     @Schema(title = "游戏ID")
     private Long id;
 
@@ -36,4 +39,9 @@ public class GameUpdateReqDTO implements Serializable {
 
     @Schema(title = "游戏地址")
     private String gameUrl;
+
+    @Schema(title = "创建时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
 }

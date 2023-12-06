@@ -6,7 +6,6 @@ import com.hou_tai.common.util.SecurityUtils;
 import com.hou_tai.common.enums.ResultCode;
 import com.hou_tai.controller.pc.dto.UserLoginReqDTO;
 import com.hou_tai.model.redis.LoginUserRedisDAO;
-import com.hou_tai.common.response.ResponseData;
 import com.hou_tai.common.response.ResultVO;
 import com.hou_tai.controller.pc.vo.UserInfoVo;
 import com.hou_tai.controller.pc.vo.UserLoginRespVO;
@@ -46,7 +45,7 @@ public class LoginController {
     @PostMapping("/userLogin")
     public ResultVO<UserLoginRespVO> userLogin(@RequestBody UserLoginReqDTO reqDTO) {
         if(StrUtil.isBlank(reqDTO.getUsername()) || StrUtil.isBlank(reqDTO.getPassword())){
-            return ResponseData.error(ResultCode.VALIDATE_FAILED);
+            return ResultVO.error(ResultCode.VALIDATE_FAILED);
         }
 
         return userInfoService.loginUser(reqDTO);
@@ -59,14 +58,14 @@ public class LoginController {
         if(null != loginUser){
             loginUserRedisDAO.remove(loginUser.getToken());
         }
-        return ResponseData.success(true);
+        return ResultVO.success(true);
     }
 
     @Operation(summary = "获取我的个人信息")
     @GetMapping("/getMyUserInfo")
     public ResultVO<UserInfoVo> getMyUserInfo() {
         Long loginUserId = SecurityUtils.getLoginUserId();
-        return new ResultVO<>(userInfoService.getUserInfoById(loginUserId));
+        return ResultVO.success(userInfoService.getUserInfoById(loginUserId));
     }
 
 }

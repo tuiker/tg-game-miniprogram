@@ -3,13 +3,12 @@ package com.hou_tai.model.pojo;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.hou_tai.model.base.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import com.hou_tai.common.enums.TriggerTypeEnums;
 
 @Data
 @Builder
@@ -22,14 +21,20 @@ public class GameTrigger implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id ;
+
     /** 游戏ID */
-    @Schema(name = "游戏ID")
+    @TableField(value = "game_id")
     private Long gameId ;
-    /** 类型 对应枚举1下载2打开 */
-    @Schema(name = "类型 对应枚举1下载2打开")
+
+    /** 类型 对应枚举类 {@link TriggerTypeEnums} */
+    @TableField(value = "type")
     private Integer type ;
 
-    /**  */
+    /** 导流分类 1：热门推荐，2：大家都在玩，3：巴西电子 */
+    @TableField(value = "category")
+    private Integer category;
+
+    /** 创建时间 */
     @TableField(fill = FieldFill.INSERT)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")

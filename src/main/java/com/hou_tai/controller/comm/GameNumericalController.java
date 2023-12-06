@@ -2,9 +2,8 @@ package com.hou_tai.controller.comm;
 
 
 import com.hou_tai.model.pojo.Language;
-import com.hou_tai.common.response.ResponseData;
 import com.hou_tai.common.response.ResultVO;
-import com.hou_tai.controller.pc.vo.GameVo;
+import com.hou_tai.controller.pc.vo.GameVO;
 import com.hou_tai.service.IGameService;
 import com.hou_tai.service.ILanguageService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -47,7 +46,7 @@ public class GameNumericalController {
     @ApiResponse(responseCode = "200", description = "查找成功")
     public ResultVO<List<Language>> listByLanguage() {
         List<Language> list = languageService.listByLanguage();
-        return ResponseData.success(list);
+        return ResultVO.success(list);
     }
 
     /**
@@ -57,9 +56,9 @@ public class GameNumericalController {
      **/
     @Operation(summary = "所有游戏")
     @GetMapping("/listByGame")
-    public ResultVO<List<GameVo>> listByGame() {
-        List<GameVo> list = gameService.listByGame();
-        return ResponseData.success(list);
+    public ResultVO<List<GameVO>> listByGame() {
+        List<GameVO> list = gameService.listByGame();
+        return ResultVO.success(list);
     }
 
 

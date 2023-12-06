@@ -7,10 +7,9 @@ import com.hou_tai.common.enums.ResultCode;
 import com.hou_tai.common.constant.CommonNum;
 import com.hou_tai.model.dao.GameMapper;
 import com.hou_tai.model.dao.GameTriggerMapper;
-import com.hou_tai.controller.pc.dto.PointDto;
+import com.hou_tai.controller.mobile.dto.PointDto;
 import com.hou_tai.model.pojo.Game;
 import com.hou_tai.model.pojo.GameTrigger;
-import com.hou_tai.common.response.ResponseData;
 import com.hou_tai.common.response.ResultVO;
 import com.hou_tai.service.IGameTriggerService;
 import jakarta.annotation.Resource;
@@ -39,24 +38,14 @@ public class GameTriggerServiceImpl extends ServiceImpl<GameTriggerMapper, GameT
 
     @Override
     public ResultVO<String> insertByPoint(PointDto dto) {
-        List<Game> list = null;
-        String apkLink = "";
-        if(StrUtil.isNotBlank(dto.getApkName())){
-            Map<String, Object> map = new HashMap<>();
-            map.put("apk_name", dto.getApkName());
-            list = gameMapper.selectByMap(map);
-
-        }
-
-        //3.应用打开类型   根据APK包名找到对应 gameId
-        if (CommonNum.THREE == dto.getTriggerType()) {
-            if (CollectionUtil.isNotEmpty(list)) {
-                dto.setGameId(list.get(0).getId());
-            } else
-                return ResponseData.error("请先上传APK包", ResultCode.ERROR);
-        }
-        insert(GameTrigger.builder().gameId(dto.getGameId()).type(dto.getTriggerType()).createTime(LocalDateTime.now()).build());
-        return ResponseData.success(apkLink);
+        insert(GameTrigger.builder()
+                .gameId(dto.getGameId())
+                .type(dto.getTriggerType())
+                .category(dto.getCategory())
+                .createTime(LocalDateTime.now())
+                .build()
+        );
+        return ResultVO.success("ok");
     }
 
     /**

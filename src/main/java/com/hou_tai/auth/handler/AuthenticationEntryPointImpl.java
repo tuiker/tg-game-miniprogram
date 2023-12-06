@@ -1,7 +1,7 @@
 package com.hou_tai.auth.handler;
 
+import com.hou_tai.common.response.ResultVO;
 import com.hou_tai.common.util.ServletUtils;
-import com.hou_tai.common.response.ResponseData;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,6 +28,6 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
         log.info("[commence][访问 URL({}) 时，没有登录]", request.getRequestURI(), e);
         // 返回 401
         //写入错误码401至response响应
-        ServletUtils.writeJSON(response, ResponseData.error(UNAUTHORIZED));
+        ServletUtils.writeJSON(response, ResultVO.error(UNAUTHORIZED));
     }
 }

@@ -5,9 +5,8 @@ import com.hou_tai.controller.pc.dto.GameAddReqDTO;
 import com.hou_tai.controller.pc.dto.GameDto;
 import com.hou_tai.controller.pc.dto.GameUpdateReqDTO;
 import com.hou_tai.model.pojo.Game;
-import com.hou_tai.common.response.ResponseData;
 import com.hou_tai.common.response.ResultVO;
-import com.hou_tai.controller.pc.vo.GameVo;
+import com.hou_tai.controller.pc.vo.GameVO;
 import com.hou_tai.service.IGameService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -42,8 +41,8 @@ public class GameController {
     @Operation(summary = "通过ID查询单条数据")
     @Parameter(name = "id", description = "游戏ID", required = true)
     @GetMapping("getVoById")
-    public ResultVO<GameVo> getVoById(@RequestParam("id") Long id){
-        return ResponseData.success(gameService.getVoById(id));
+    public ResultVO<GameVO> getVoById(@RequestParam("id") Long id){
+        return ResultVO.success(gameService.getVoById(id));
     }
 
     /**
@@ -54,10 +53,10 @@ public class GameController {
      */
     @Operation(summary = "分页查询")
     @GetMapping("/page")
-    public ResultVO<Page<GameVo>> paginQuery(@ParameterObject GameDto dto){
+    public ResultVO<Page<GameVO>> paginQuery(@ParameterObject GameDto dto){
         //1.分页参数
-        Page<GameVo> page = gameService.paginQuery(dto);
-        return ResponseData.success(page);
+        Page<GameVO> page = gameService.paginQuery(dto);
+        return ResultVO.success(page);
     }
 
     /**
@@ -66,12 +65,10 @@ public class GameController {
      * @param gameAddReqDTO 实例对象
      * @return 实例对象
      */
-    @Operation(summary = "新增数据",description = "gameName,gameType,languageId," +
-            "gameLogo,gameMainLogo,gameBackground,gameUrl,gameDesc," +
-            "dataSecurity,gameGrade,gameDownload,gameAge,devEmail,devUrl,gameLabel")
+    @Operation(summary = "添加游戏")
     @PostMapping("/add")
     public ResultVO<Game> add(@RequestBody GameAddReqDTO gameAddReqDTO){
-        return ResponseData.success(gameService.insert(gameAddReqDTO));
+        return ResultVO.success(gameService.insert(gameAddReqDTO));
     }
 
     /**
@@ -80,12 +77,10 @@ public class GameController {
      * @param reqDTO 实例对象
      * @return 实例对象
      */
-    @Operation(summary = "更新数据",description = "id,gameName,gameType,languageId," +
-            "gameLogo,gameMainLogo,gameBackground,gameUrl,gameDesc," +
-            "dataSecurity,gameGrade,gameDownload,gameAge,devEmail,devUrl,gameLabel")
+    @Operation(summary = "更新数据")
     @PostMapping("/update")
     public ResultVO<Boolean> update(@RequestBody GameUpdateReqDTO reqDTO){
-        return ResponseData.success(gameService.update(reqDTO));
+        return ResultVO.success(gameService.update(reqDTO));
     }
 
     /**
@@ -96,7 +91,7 @@ public class GameController {
     @Operation(summary = "通过主键删除数据")
     @DeleteMapping("/deleteById")
     public ResultVO<Boolean> deleteById(Long id){
-        return ResponseData.success(gameService.deleteById(id));
+        return ResultVO.success(gameService.deleteById(id));
     }
 
 

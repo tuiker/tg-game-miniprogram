@@ -2,19 +2,14 @@ package com.hou_tai.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.ObjectUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hou_tai.auth.entity.LoginUser;
 import com.hou_tai.common.enums.ResultCode;
 import com.hou_tai.model.dao.UserInfoMapper;
-import com.hou_tai.controller.pc.dto.UserDto;
 import com.hou_tai.controller.pc.dto.UserLoginReqDTO;
 import com.hou_tai.model.pojo.UserInfo;
 import com.hou_tai.model.redis.LoginUserRedisDAO;
-import com.hou_tai.common.response.ResponseData;
 import com.hou_tai.common.response.ResultVO;
-import com.hou_tai.controller.pc.vo.UserInfoLoginVo;
 import com.hou_tai.controller.pc.vo.UserInfoVo;
 import com.hou_tai.controller.pc.vo.UserLoginRespVO;
 import com.hou_tai.service.IUserInfoService;
@@ -24,7 +19,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * @Author: GaoLu
@@ -39,26 +33,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
     @Resource
     private LoginUserRedisDAO loginUserRedisDAO;
-
-
-    @Override
-    public ResultVO loginUser(UserDto dto) {
-        QueryWrapper<UserInfo> qw = new QueryWrapper<>();
-        qw.eq("user_name", dto.getAccount());
-        qw.eq("password", MD5Utils.MD5(dto.getPassword()));
-        List<UserInfo> userInfoList = this.list(qw);
-        if (ObjectUtil.isNotNull(userInfoList) && userInfoList.size() > 0) {
-            UserInfo userInfo = userInfoList.get(0);
-            //修改最近登录时间
-            UserInfo updateUser=new UserInfo();
-            updateUser.setId(userInfo.getId());
-            updateUser.setRecentLoginTime(LocalDateTime.now());
-            userInfoMapper.updateByPrimaryKeySelective(updateUser);
-            UserInfoLoginVo loginVo = BeanUtil.copyProperties(userInfo, UserInfoLoginVo.class);
-            return ResponseData.success(loginVo);
-        } else
-            return ResponseData.error(ResultCode.ERROR_USER_OR_PASSWORD);
-    }
 
     /**
      * 用户登录
@@ -86,19 +60,15 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
             //将用户的基本信息及token返回给前端
             UserLoginRespVO respVO = BeanUtil.copyProperties(user, UserLoginRespVO.class);
             respVO.setToken(token);
-            return ResponseData.success(respVO);
+            return ResultVO.success(respVO);
         } else
-            return ResponseData.error(ResultCode.ERROR_USER_OR_PASSWORD);
+            return ResultVO.error(ResultCode.ERROR_USER_OR_PASSWORD);
     }
 
 
     public UserInfoVo getUserInfoById(long id) {
         UserInfo userInfo = userInfoMapper.selectByPrimaryKey(id);
         return BeanUtil.copyProperties(userInfo, UserInfoVo.class);
-    }
-
-    public Long getRandomUserId(){
-        return userInfoMapper.getRandomUserId();
     }
 
 }

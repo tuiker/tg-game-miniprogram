@@ -2,7 +2,6 @@ package com.hou_tai.controller.comm;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.hou_tai.common.enums.ResultCode;
-import com.hou_tai.common.response.ResponseData;
 import com.hou_tai.common.response.ResultVO;
 import com.hou_tai.service.IFileUploadService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -40,13 +39,13 @@ public class FileUploadController {
     {
         if (files == null || (files.length == 1 && files[0].getSize() == 0)) {
             log.info("文件上传失败**************");
-            return ResponseData.error("文件为空", ResultCode.FAILED);
+            return ResultVO.error(ResultCode.FAILED.getCode(), "文件为空");
         }
         log.info("文件上传开始>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         List<String> map = fileUploadService.upload(files, gameName);
         log.info("文件上传结束>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         //System.out.println(map);
-        return CollectionUtil.isNotEmpty(map) ? ResponseData.success(map) : ResponseData.error("上传失败", ResultCode.FAILED);
+        return CollectionUtil.isNotEmpty(map) ? ResultVO.success(map) : ResultVO.error(ResultCode.FAILED.getCode(), "上传失败");
 
     }
 }

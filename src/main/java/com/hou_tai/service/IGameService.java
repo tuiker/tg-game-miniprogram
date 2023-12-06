@@ -1,15 +1,14 @@
 package com.hou_tai.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.hou_tai.controller.mobile.dto.MobileGameDto;
-import com.hou_tai.controller.mobile.dto.MobileHomeGameDto;
+import com.hou_tai.common.vo.PageResult;
+import com.hou_tai.controller.mobile.dto.GamePageReqDTO;
+import com.hou_tai.controller.mobile.vo.MobileGameVO;
 import com.hou_tai.controller.pc.dto.GameAddReqDTO;
 import com.hou_tai.controller.pc.dto.GameDto;
 import com.hou_tai.controller.pc.dto.GameUpdateReqDTO;
 import com.hou_tai.model.pojo.Game;
-import com.hou_tai.controller.pc.vo.GameVo;
-import com.hou_tai.controller.mobile.vo.MobileGameHomeVo;
-import com.hou_tai.controller.mobile.vo.MobileGameVo;
+import com.hou_tai.controller.pc.vo.GameVO;
 
 import java.util.List;
 
@@ -23,13 +22,11 @@ import java.util.List;
 public interface IGameService {
 
     /**
-     * 通过ID查询单条数据
-     *
-     * @param id 主键
-     * @return 实例对象
+     * 分页查询游戏
+     * @param reqDTO
+     * @return
      */
-    Game queryById(Long id);
-
+    PageResult<MobileGameVO> pageGameList(GamePageReqDTO reqDTO);
 
     /**
      * 分页查询
@@ -37,7 +34,7 @@ public interface IGameService {
      * @param dto 筛选条件
      * @return
      */
-    Page<GameVo> paginQuery(GameDto dto);
+    Page<GameVO> paginQuery(GameDto dto);
     /**
      * 新增数据
      *
@@ -67,26 +64,15 @@ public interface IGameService {
      * @Param  * @param 
      * @return List<Map<String,Object>>
      **/
-    List<GameVo> listByGame();
+    List<GameVO> listByGame();
     
     /**
      * @Author Sam
-     * @Description 
+     * @Description 根据ID查询游戏
      * @Date 16:02 2023/11/8
      * @Param  * @param id
      * @return GameVo
      **/
-    GameVo getVoById(Long id);
+    GameVO getVoById(Long id);
     
-    /**
-     * @Author Sam
-     * @Description 分页获取类似游戏数据-移动端
-     * @Date 16:05 2023/11/8
-     * @Param  * @param dto
-     * @return Page<GameVo>
-     **/
-    Page<MobileGameHomeVo> pageForMobile(MobileGameDto dto);
-
-
-    Page<MobileGameHomeVo> pageForHomeType(MobileHomeGameDto dto);
 }

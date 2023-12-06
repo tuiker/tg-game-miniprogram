@@ -1,7 +1,6 @@
 package com.hou_tai.controller.pc;
 
 
-import com.hou_tai.common.response.ResponseData;
 import com.hou_tai.common.response.ResultVO;
 import com.hou_tai.controller.pc.vo.DataBoardVo;
 import com.hou_tai.controller.pc.vo.GameGeneralizeVo;
@@ -38,13 +37,13 @@ public class DataOverviewController {
     @Parameter(name = "gameId", description = "游戏ID")
     @GetMapping("/getAllStates")
     public ResultVO<DataBoardVo> getAllStates(@RequestParam(value = "gameId", required = false) Long gameId) {
-        return ResponseData.success(dataOverviewService.getAllStates(gameId));
+        return ResultVO.success(dataOverviewService.getAllStates(gameId));
     }
 
     @Operation(summary = "获取数据概况表格数据", description = "获取数据概况表格数据")
     @GetMapping("/getDataProfilingTableData")
     public ResultVO<List<GameGeneralizeVo>> getAllStates() {
-        return ResponseData.success(dataOverviewService.getDataProfilingTableData());
+        return ResultVO.success(dataOverviewService.getDataProfilingTableData());
     }
 
 
