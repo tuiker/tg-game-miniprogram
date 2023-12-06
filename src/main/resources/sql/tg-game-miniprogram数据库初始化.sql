@@ -85,11 +85,14 @@ CREATE TABLE `tg-game-miniprogram`.`sys_menu`  (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `tg-game-miniprogram`.`sys_menu` VALUES (2, '游戏管理', 1, 0, '/game_manage', NULL, 'el-icon-bangzhu', 2, 0);
-INSERT INTO `tg-game-miniprogram`.`sys_menu` VALUES (3, '游戏列表', 2, 2, '/game-lists', '/game_manage/game-list.vue', NULL, 1, 0);
-INSERT INTO `tg-game-miniprogram`.`sys_menu` VALUES (11, '添加游戏', 3, 3, NULL, 'addGame', NULL, 1, 1);
-INSERT INTO `tg-game-miniprogram`.`sys_menu` VALUES (12, '删除游戏', 3, 3, NULL, 'deleteGame', NULL, 1, 1);
-INSERT INTO `tg-game-miniprogram`.`sys_menu` VALUES (13, '编辑游戏', 3, 3, NULL, 'editGame', NULL, 1, 1);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (2, '游戏管理', 1, 0, '/gameManage', NULL, 'el-icon-bangzhu', 1, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (3, '游戏列表', 2, 2, '/gameList', '/gameManage/GameList', NULL, 1, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (11, '添加游戏', 3, 3, NULL, 'addGame', NULL, 1, 1);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (12, '删除游戏', 3, 3, NULL, 'deleteGame', NULL, 1, 1);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (13, '编辑游戏', 3, 3, NULL, 'editGame', NULL, 1, 1);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (16, '游戏分析', 1, 0, '/gameAnalysis', NULL, 'el-icon-bangzhu', 2, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (17, '游戏概况', 2, 16, '/gameOverview', '/gameAnalysis/GameOverview', NULL, 1, 0);
+
 
 -- ----------------------------
 -- Table structure for sys_user_menu
