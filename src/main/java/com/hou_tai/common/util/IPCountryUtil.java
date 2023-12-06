@@ -24,18 +24,8 @@ import java.util.regex.Pattern;
 @Slf4j
 @Component
 public class IPCountryUtil {
-    @Value("${lanBo.ipv4.path}")
-    private String IP4_PATH;
 
-//    @PostConstruct
-//    public void getIp() throws IOException {
-//        //读取ip.csv文件，创建 KEY:ip,VALUE:语言ID 缓存
-//        init();
-//    }
     private static final HashMap<Long, Integer> maxIpMap = new HashMap<>();
-    private static final String UNKNOWN = "unknown";
-    private static final String LOCAL_IP_PROMPT = "本地循环地址";
-    private static final String PRIVATE_IP_PROMPT = "私有地址";
 
     private static final String[] LOCAL_IPS = {"127.0.0.1", "0.0.0.0", "localhost"};
 
@@ -106,29 +96,29 @@ public class IPCountryUtil {
     /**
      * 初始化IP缓存
      */
-    private void init() throws IOException {
-        log.info("进入IP初始化》》》》》》》"+IP4_PATH);
-        //Path path = Paths.get("src\\main\\resources\\others\\ip4.csv");
-        Path path = Paths.get(IP4_PATH);
-        List<String> lines = Files.readAllLines(path);
-        LinkedList<Long> maxIpList = new LinkedList<>();
-        for (String line : lines) {
-            String[] split = line.split(",");
-            if (split.length != 3) {
-                continue;
-            }
-            String country = split[0];
-//            String start = split[1];//开始ip
-            String end = split[2];//结束ip
-            long endIp = ipToNum(end);
-            maxIpList.add(endIp);
-            maxIpMap.put(endIp, map.getOrDefault(country, 1));
-        }
-        maxIps = new Long[maxIpList.size()];
-        maxIpList.toArray(maxIps);
-        Arrays.sort(maxIps);
-        log.info("IP初始化成功》》》》》》》共{}条记录", maxIps.length);
-    }
+//    private void init() throws IOException {
+//        log.info("进入IP初始化》》》》》》》"+IP4_PATH);
+//        //Path path = Paths.get("src\\main\\resources\\others\\ip4.csv");
+//        Path path = Paths.get(IP4_PATH);
+//        List<String> lines = Files.readAllLines(path);
+//        LinkedList<Long> maxIpList = new LinkedList<>();
+//        for (String line : lines) {
+//            String[] split = line.split(",");
+//            if (split.length != 3) {
+//                continue;
+//            }
+//            String country = split[0];
+////            String start = split[1];//开始ip
+//            String end = split[2];//结束ip
+//            long endIp = ipToNum(end);
+//            maxIpList.add(endIp);
+//            maxIpMap.put(endIp, map.getOrDefault(country, 1));
+//        }
+//        maxIps = new Long[maxIpList.size()];
+//        maxIpList.toArray(maxIps);
+//        Arrays.sort(maxIps);
+//        log.info("IP初始化成功》》》》》》》共{}条记录", maxIps.length);
+//    }
 
     private static final HashMap<String, Integer> map = new HashMap<>();
 
