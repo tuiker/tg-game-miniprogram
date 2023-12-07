@@ -3,7 +3,7 @@
 <mapper namespace="com.hou_tai.model.dao.UserInfoMapper">
 
   <select id="pageList" resultType="com.hou_tai.controller.pc.vo.UserInfoVO">
-    SELECT a.id, a.user_name, a.user_img, a.recent_login_time, a.create_time, a.update_time,
+    SELECT a.id, a.user_name, a.user_img, a.recent_login_time, a.create_time, a.update_time, a.role_id,
     b.user_name AS creator, c.user_name AS updater
     FROM `user_info` AS a
     LEFT JOIN user_info AS b ON b.id = a.create_id

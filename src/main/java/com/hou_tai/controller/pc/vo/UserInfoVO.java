@@ -16,37 +16,39 @@ import java.util.List;
 @Data
 @Schema(title = "用户信息", description = "用户信息对象")
 public class UserInfoVO {
-    @Schema(title = "Id", description = "用户Id", name = "id")
+    @Schema(title = "用户id", description = "用户id", name = "id")
     private long id;
-    @Schema(title = "昵称", description = "用户昵称", name = "userName")
+
+    @Schema(title = "用户账号", description = "用户账号", name = "userName")
     private String userName;
+
     @Schema(title = "头像", description = "用户头像", name = "userImg")
     private String userImg;
-    @Schema(title = "性别", description = "用户性别", name = "userSex")
-    private String userSex;
-    @Schema(title = "属性", description = "属性", name = "userStatsName")
-    private String userStatsName;
-    @Schema(title = "游戏时长", description = "总游戏时长", name = "gameTimeAll")
-    private int gameTimeAll;//暂时未同步
-    @Schema(title = "游戏名", description = "游戏名集合", name = "gameNameAll")
-    private List<String> gameNameAll;
-    @Schema(title = "登录时间", description = "最近登录时间", name = "recentLoginTime")
+
+    @Schema(title = "最近登录时间", description = "最近登录时间", name = "recentLoginTime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime recentLoginTime;
-    @Schema(title = "注册时间", description = "用户注册时间", name = "signTime")
+
+    @Schema(title = "创建时间", description = "创建时间", name = "createTime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime signTime;
-    @Schema(title = "手机账户", description = "手机账户", name = "phoneAccount")
-    private String phoneAccount;
-    @Schema(title = "邮箱账户", description = "邮箱账户", name = "emailAccount")
-    private String emailAccount;
-    @Schema(title = "账户", description = "邮箱/手机账户", name = "account")
-    private String account;
-    @Schema(title = "注册类型", description = "首次注册类型：手机/邮箱", name = "firstSignTypeName")
-    private String firstSignTypeName;
-    @Schema(title = "注册载体类型", description = "注册载体类型：对应载体类型", name = "carrierId")
-    private String carrierId;
+    private LocalDateTime createTime;
 
+    @Schema(title = "修改时间", description = "修改时间", name = "updateTime")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updateTime;
+
+    @Schema(title = "角色ID", description = "角色ID", name = "roleId")
+    private Integer roleId;
+
+    @Schema(title = "创建人", description = "创建人", name = "creator")
+    private String creator;
+
+    @Schema(title = "修改人", description = "修改人", name = "updater")
+    private String updater;
+
+    @Schema(title = "角色名称", description = "角色名称", name = "roleName")
+    private String roleName;
 }
