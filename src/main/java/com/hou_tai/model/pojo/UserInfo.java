@@ -17,38 +17,30 @@ import java.util.Date;
 @TableName("user_info")
 @Schema(title = "用户实体")
 public class UserInfo {
-    @Schema(title = "用户ID" )
+    /**
+     * 用户ID
+     */
     @TableId
     private Long id ;
-    /** 用户名称 */
-     @Schema(title = "用户名称" )
+    /** 用户账号 */
     private String userName ;
     /** 用户头像 */
-     @Schema(title = "用户头像" )
     private String userImg ;
     /** 用户密码 */
-     @Schema(title = "用户密码" )
     private String password ;
     /** 最近登录时间 */
-     @Schema(title = "最近登录时间" )
     private LocalDateTime recentLoginTime ;
-    /**  */
-     @Schema(title = "" )
-    private Integer createId ;
-    /**  */
-     @Schema(title = "" )
+    /** 创建人ID */
+    private Long createId ;
+    /** 创建时间 */
     private LocalDateTime createTime ;
-    /**  */
-     @Schema(title = "" )
-    private Integer updateId ;
-    /**  */
-     @Schema(title = "" )
+    /** 修改人ID */
+    private Long updateId ;
+    /** 修改时间 */
     private LocalDateTime updateTime ;
     /** 角色ID */
-     @Schema(title = "角色ID" )
     private Integer roleId ;
     /** 渠道ID */
-     @Schema(title = "渠道ID" )
     private Integer channelId ;
 
 }

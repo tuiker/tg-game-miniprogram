@@ -1,6 +1,6 @@
 package com.hou_tai.service;
 
-import com.hou_tai.controller.mobile.dto.PointDto;
+import com.hou_tai.controller.mobile.dto.PointDTO;
 import com.hou_tai.model.pojo.GameTrigger;
 import com.hou_tai.common.response.ResultVO;
 
@@ -13,6 +13,6 @@ import com.hou_tai.common.response.ResultVO;
  **/
 public interface IGameTriggerService {
 
-    ResultVO<String> insertByPoint(PointDto dto);
+    ResultVO<String> insertByPoint(PointDTO dto);
     GameTrigger insert(GameTrigger gameTrigger);
 }

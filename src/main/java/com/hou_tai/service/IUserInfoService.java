@@ -1,11 +1,13 @@
 package com.hou_tai.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.hou_tai.controller.pc.dto.UserLoginReqDTO;
+import com.hou_tai.common.vo.PageResult;
+import com.hou_tai.controller.pc.dto.*;
 import com.hou_tai.model.pojo.UserInfo;
 import com.hou_tai.common.response.ResultVO;
-import com.hou_tai.controller.pc.vo.UserInfoVo;
+import com.hou_tai.controller.pc.vo.UserInfoVO;
 import com.hou_tai.controller.pc.vo.UserLoginRespVO;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @Author: GaoLu
@@ -28,5 +30,33 @@ public interface IUserInfoService extends IService<UserInfo> {
      * @Return
      * @Param id
      **/
-    UserInfoVo getUserInfoById(long id);
+    UserInfoVO getUserInfoById(long id);
+
+    /**
+     * 分页查询用户列表
+     * @param reqDTO
+     * @return
+     */
+    PageResult<UserInfoVO> pageList(UserPageReqDTO reqDTO);
+
+    /**
+     * 添加系统用户
+     * @param reqDTO
+     * @return
+     */
+    ResultVO<Boolean> addSysUser(SysUserAddReqDTO reqDTO);
+
+    /**
+     * 修改系统用户
+     * @param reqDTO
+     * @return
+     */
+    ResultVO<Boolean> updateSysUser(SysUserUpdateReqDTO reqDTO);
+
+    /**
+     * 修改系统用户密码
+     * @param reqDTO
+     * @return
+     */
+    ResultVO<Boolean> updateSysUserPassword(SysUserPasswordUpdateReqDTO reqDTO);
 }

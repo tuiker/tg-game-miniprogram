@@ -1,8 +1,8 @@
 package com.hou_tai.service;
 
 
-import com.hou_tai.controller.pc.vo.DataBoardVo;
-import com.hou_tai.controller.pc.vo.GameGeneralizeVo;
+import com.hou_tai.controller.pc.vo.DataBoardVO;
+import com.hou_tai.controller.pc.vo.GameGeneralizeVO;
 
 import java.util.List;
 
@@ -19,11 +19,11 @@ public interface IDataOverviewService {
      * @Date 2023/11/8
      * @Return 数据概括对象
      **/
-    DataBoardVo getAllStates(Long gameId);
+    DataBoardVO getAllStates(Long gameId);
 
     /**
      * 获取数据概况表格数据
      */
-    List<GameGeneralizeVo> getDataProfilingTableData(Integer orderType);
+    List<GameGeneralizeVO> getDataProfilingTableData(Integer orderType);
 
 }

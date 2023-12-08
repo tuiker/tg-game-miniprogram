@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @Schema(title = "时间、数据对象")
-public class DataOfTimeVo {
+public class DataOfTimeVO {
     @Schema(title = "数据", description = "相关数值", name = "num")
     private int num;
     @JSONField(format = "yyyy-MM-dd") //ResponseBody做了拦截，封装了一层导致原来JsonFormat无效，前端返回日期，要用JSONField来处理

@@ -5,7 +5,7 @@ import com.hou_tai.common.vo.PageResult;
 import com.hou_tai.controller.mobile.dto.GamePageReqDTO;
 import com.hou_tai.controller.mobile.vo.MobileGameVO;
 import com.hou_tai.controller.pc.dto.GameAddReqDTO;
-import com.hou_tai.controller.pc.dto.GameDto;
+import com.hou_tai.controller.pc.dto.GameDTO;
 import com.hou_tai.controller.pc.dto.GameUpdateReqDTO;
 import com.hou_tai.model.pojo.Game;
 import com.hou_tai.controller.pc.vo.GameVO;
@@ -34,7 +34,7 @@ public interface IGameService {
      * @param dto 筛选条件
      * @return
      */
-    Page<GameVO> paginQuery(GameDto dto);
+    Page<GameVO> paginQuery(GameDTO dto);
     /**
      * 新增数据
      *
