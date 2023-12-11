@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
 /**
- * 用户-（菜单或按钮）权限关联表
+ * 角色信息表
  * @Author yxf
  */
 @Data
@@ -15,25 +15,31 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_user_menu")
-public class SysUserMenu {
+@TableName("sys_role")
+public class SysRole {
 
     /**
      * 主键ID
      */
     @TableId(type = IdType.AUTO)
-    private Long id;
+    private Integer id;
 
     /**
-     * 用户ID
+     * 角色名称
      */
-    @TableField(value = "user_id")
-    private Long userId;
+    @TableField(value = "role_name")
+    private String roleName;
 
     /**
-     * 菜单或按钮权限ID
+     * 角色编码
      */
-    @TableField(value = "menu_id")
-    private Integer menuId;
+    @TableField(value = "role_code")
+    private String roleCode;
+
+    /**
+     * 角色描述
+     */
+    @TableField(value = "role_describe")
+    private String roleDescribe;
 
 }
