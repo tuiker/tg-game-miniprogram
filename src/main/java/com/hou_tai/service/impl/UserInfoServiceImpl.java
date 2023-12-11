@@ -161,8 +161,8 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         if(null != userId){
             queryWrapper.ne(UserInfo::getId, userId);
         }
-        List<UserInfo> list = this.list(queryWrapper);
-        return CollectionUtil.isNotEmpty(list);
+        long count = this.count(queryWrapper);
+        return count > 0;
     }
 
     /**

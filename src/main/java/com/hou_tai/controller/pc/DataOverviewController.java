@@ -2,6 +2,8 @@ package com.hou_tai.controller.pc;
 
 
 import com.hou_tai.common.response.ResultVO;
+import com.hou_tai.common.vo.PageResult;
+import com.hou_tai.controller.pc.dto.DataProfilingPageReqDTO;
 import com.hou_tai.controller.pc.vo.DataBoardVO;
 import com.hou_tai.controller.pc.vo.GameGeneralizeVO;
 import com.hou_tai.service.IDataOverviewService;
@@ -10,6 +12,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,10 +44,9 @@ public class DataOverviewController {
     }
 
     @Operation(summary = "获取数据概况表格数据", description = "获取数据概况表格数据")
-    @Parameter(name = "orderType", description = "排序类型  1：按游戏添加时间降序，2：按导流次数降序")
     @GetMapping("/getDataProfilingTableData")
-    public ResultVO<List<GameGeneralizeVO>> getAllStates(@RequestParam("orderType") Integer orderType) {
-        return ResultVO.success(dataOverviewService.getDataProfilingTableData(orderType));
+    public ResultVO<PageResult<GameGeneralizeVO>> getDataProfilingTableData(@ParameterObject DataProfilingPageReqDTO reqDTO) {
+        return ResultVO.success(dataOverviewService.getDataProfilingTableData(reqDTO));
     }
 
 

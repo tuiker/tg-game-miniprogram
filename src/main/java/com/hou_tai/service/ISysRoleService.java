@@ -32,5 +32,5 @@ public interface ISysRoleService extends IService<SysRole> {
      * @param roleId 角色ID
      * @return
      */
-    Boolean deleteRoleById(Integer roleId);
+    ResultVO<Boolean> deleteRoleById(Integer roleId);
 }

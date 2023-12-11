@@ -1,6 +1,8 @@
 package com.hou_tai.service;
 
 
+import com.hou_tai.common.vo.PageResult;
+import com.hou_tai.controller.pc.dto.DataProfilingPageReqDTO;
 import com.hou_tai.controller.pc.vo.DataBoardVO;
 import com.hou_tai.controller.pc.vo.GameGeneralizeVO;
 
@@ -24,6 +26,6 @@ public interface IDataOverviewService {
     /**
      * 获取数据概况表格数据
      */
-    List<GameGeneralizeVO> getDataProfilingTableData(Integer orderType);
+    PageResult<GameGeneralizeVO> getDataProfilingTableData(DataProfilingPageReqDTO reqDTO);
 
 }

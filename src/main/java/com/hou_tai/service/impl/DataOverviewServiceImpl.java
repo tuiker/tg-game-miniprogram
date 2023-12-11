@@ -1,7 +1,10 @@
 package com.hou_tai.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hou_tai.common.enums.CategoryEnums;
 import com.hou_tai.common.constant.CommonNum;
+import com.hou_tai.common.vo.PageResult;
+import com.hou_tai.controller.pc.dto.DataProfilingPageReqDTO;
 import com.hou_tai.model.dao.GameMapper;
 import com.hou_tai.model.dao.GameTriggerMapper;
 import com.hou_tai.controller.pc.vo.DataBoardVO;
@@ -97,9 +100,7 @@ public class DataOverviewServiceImpl implements IDataOverviewService {
         });
         threadPoolExecutor.submit(() -> {
             //查询过去七天内的导流折线图数据
-            dataBoardVo.setHotDataOfTime(gameTriggerMapper.getNumForSevenDay(gameId, CommonNum.THREE, CategoryEnums.HOT.getCode()));
-            dataBoardVo.setEveryOneIsPlayingDataOfTime(gameTriggerMapper.getNumForSevenDay(gameId, CommonNum.THREE, CategoryEnums.EVERYONE_IS_PLAYING.getCode()));
-            dataBoardVo.setBrazilElectronDataOfTime(gameTriggerMapper.getNumForSevenDay(gameId, CommonNum.THREE, CategoryEnums.BRAZIL_ELECTRON.getCode()));
+            dataBoardVo.setAllDataOfTime(gameTriggerMapper.getNumForSevenDay(gameId, CommonNum.THREE));
             countDownLatch.countDown();
         });
         return countDownLatch;
@@ -109,8 +110,9 @@ public class DataOverviewServiceImpl implements IDataOverviewService {
      * 获取数据概况表格数据
      */
     @Override
-    public List<GameGeneralizeVO> getDataProfilingTableData(Integer orderType) {
-        return gameTriggerMapper.getCountAll(CommonNum.THREE, orderType);
+    public PageResult<GameGeneralizeVO> getDataProfilingTableData(DataProfilingPageReqDTO reqDTO) {
+        Page<GameGeneralizeVO> page = gameTriggerMapper.getCountAll(new Page<>(reqDTO.getPage(), reqDTO.getPageSize()), CommonNum.THREE, reqDTO);
+        return new PageResult<>(page.getRecords(), page.getTotal());
     }
 
 
