@@ -42,7 +42,8 @@
                 LEFT JOIN game_trigger AS gt ON gt.game_id = g.id
                 LEFT JOIN `language` AS l ON g.language_id = l.id
         WHERE
-            gt.type = #{type,jdbcType=INTEGER}
+            g.deleted!=1
+            AND (gt.type = #{type,jdbcType=INTEGER} OR gt.type IS NULL)
         GROUP BY
             g.id
         ORDER BY
