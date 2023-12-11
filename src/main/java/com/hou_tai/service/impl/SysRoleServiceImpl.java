@@ -12,6 +12,7 @@ import com.hou_tai.model.pojo.SysRole;
 import com.hou_tai.model.pojo.UserInfo;
 import com.hou_tai.service.ISysRoleMenuService;
 import com.hou_tai.service.ISysRoleService;
+import com.hou_tai.service.IUserInfoService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
     @Resource
     private ISysRoleMenuService sysRoleMenuService;
+
+    @Resource
+    private IUserInfoService userInfoService;
 
     /**
      * 添加角色
@@ -73,12 +77,16 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
      * @return
      */
     @Override
-    public Boolean deleteRoleById(Integer roleId) {
+    public ResultVO<Boolean> deleteRoleById(Integer roleId) {
+        Long count = userInfoService.lambdaQuery().eq(UserInfo::getRoleId, roleId).count();
+        if(count > 0){
+            return ResultVO.success("该角色已绑定用户，请先解绑", false);
+        }
         //删除角色
         this.removeById(roleId);
         //删除角色权限关联信息
         sysRoleMenuService.deleteByRoleId(roleId);
-        return true;
+        return ResultVO.success(true);
     }
 
     /**

@@ -25,7 +25,6 @@
           <if test="null != gameId">
               AND game_id = #{gameId}
           </if>
-        AND category = #{category,jdbcType=INTEGER}
         AND type = #{type,jdbcType=INTEGER}
         GROUP BY
             time
@@ -47,10 +46,10 @@
         GROUP BY
             g.id
         ORDER BY
-            <if test="null != orderType and orderType == 1 ">
+            <if test="null != reqDTO.orderType and reqDTO.orderType == 1 ">
                 g.create_time DESC
             </if>
-            <if test="null != orderType and orderType == 2 ">
+            <if test="null != reqDTO.orderType and reqDTO.orderType == 2 ">
                 openNum DESC
             </if>
 

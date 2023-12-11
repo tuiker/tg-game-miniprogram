@@ -45,4 +45,7 @@ public class DataBoardVO implements Serializable {
     @Schema(title = "过去七日内巴西电子导流折线图数据", description = "过去七日内巴西电子导流折线图数据", name = "brazilElectronDataOfTime")
     private List<DataOfTimeVO> brazilElectronDataOfTime;
 
+    @Schema(title = "过去七日内导流折线图数据", description = "过去七日内导流折线图数据", name = "allDataOfTime")
+    private List<DataOfTimeVO> allDataOfTime;
+
 }

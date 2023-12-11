@@ -75,8 +75,7 @@ public class SysRoleController {
     @Parameter(name = "id", description = "角色ID", required = true)
     @DeleteMapping("/deleteById")
     public ResultVO<Boolean> deleteById(@RequestParam("id") Integer id){
-        sysRoleService.deleteRoleById(id);
-        return ResultVO.success(true);
+        return sysRoleService.deleteRoleById(id);
     }
 
 }
