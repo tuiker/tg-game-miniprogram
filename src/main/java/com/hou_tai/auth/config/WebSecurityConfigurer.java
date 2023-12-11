@@ -64,7 +64,7 @@ public class WebSecurityConfigurer {
                 .and()
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
 
-        // 添加 JWT Filter
+        // 添加 Token Filter
         httpSecurity.addFilterBefore(new TokenAuthenticationFilter(loginUserRedisDAO), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }

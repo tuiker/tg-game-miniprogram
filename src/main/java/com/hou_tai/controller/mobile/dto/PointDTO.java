@@ -12,7 +12,7 @@ import lombok.Data;
  **/
 @Data
 @Schema(title = "埋点数据入参")
-public class PointDto {
+public class PointDTO {
 
     @Schema(title = "游戏id")
     private Long gameId;

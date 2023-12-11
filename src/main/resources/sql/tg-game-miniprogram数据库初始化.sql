@@ -85,26 +85,45 @@ CREATE TABLE `tg-game-miniprogram`.`sys_menu`  (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (2, '游戏管理', 1, 0, '/gameManage', NULL, 'el-icon-bangzhu', 1, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (2, '游戏管理', 1, -1, '/gameManage', NULL, 'el-icon-bangzhu', 1, 0);
 INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (3, '游戏列表', 2, 2, '/gameList', '/gameManage/GameList', NULL, 1, 0);
 INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (11, '添加游戏', 3, 3, NULL, 'addGame', NULL, 1, 1);
-INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (12, '删除游戏', 3, 3, NULL, 'deleteGame', NULL, 1, 1);
-INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (13, '编辑游戏', 3, 3, NULL, 'editGame', NULL, 1, 1);
-INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (16, '游戏分析', 1, 0, '/gameAnalysis', NULL, 'el-icon-bangzhu', 2, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (12, '删除游戏', 3, 3, NULL, 'deleteGame', NULL, 3, 1);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (13, '编辑游戏', 3, 3, NULL, 'editGame', NULL, 2, 1);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (16, '游戏分析', 1, -1, '/gameAnalysis', NULL, 'el-icon-bangzhu', 2, 0);
 INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (17, '游戏概况', 2, 16, '/gameOverview', '/gameAnalysis/GameOverview', NULL, 1, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (18, '系统管理', 1, -1, '/system', NULL, 'el-icon-setting', 99, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (19, '菜单管理', 2, 18, '/sysMenuManage', '/system/SysMenuManage', 'el-icon-menu', 1, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (22, '用户管理', 2, 18, '/sysUser', '/system/SysUserManage', 'el-icon-user', 2, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (23, '角色管理', 2, 18, '/roleManage', '/system/SysRoleManage', 'el-icon-s-custom', 3, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (24, '添加用户', 3, 22, '', 'addUser', '', 1, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (25, '修改用户', 3, 22, '', 'editUser', '', 2, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (26, '修改密码', 3, 22, '', 'updatePassword', '', 3, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (27, '删除用户', 3, 22, '', 'deleteUser', '', 4, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (28, '添加角色', 3, 23, '', 'addRole', '', 1, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (29, '修改角色', 3, 23, '', 'editRole', '', 2, 0);
+INSERT INTO `tg-game-miniprogram`.`sys_menu` (`id`, `name`, `type`, `parent_id`, `path`, `component`, `icon`, `sort`, `hidden`) VALUES (30, '删除角色', 3, 23, '', 'deleteRole', '', 3, 0);
 
 
--- ----------------------------
--- Table structure for sys_user_menu
--- ----------------------------
-DROP TABLE IF EXISTS `tg-game-miniprogram`.`sys_user_menu`;
-CREATE TABLE `tg-game-miniprogram`.`sys_user_menu`  (
-                                                        `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-                                                        `user_id` bigint NOT NULL COMMENT '用户ID',
-                                                        `menu_id` int NOT NULL COMMENT '菜单或按钮权限ID',
-                                                        PRIMARY KEY (`id`) USING BTREE,
-                                                        INDEX `idx_user_id`(`user_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户菜单权限关联表' ROW_FORMAT = Dynamic;
+
+
+CREATE TABLE `tg-game-miniprogram`.`sys_role` (
+                            `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                            `role_name` varchar(30) NOT NULL COMMENT '角色名称',
+                            `role_code` varchar(30) NOT NULL COMMENT '角色编码',
+                            `role_describe` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '描述',
+                            PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='角色信息表';
+
+
+
+CREATE TABLE `tg-game-miniprogram`.`sys_role_menu` (
+                                 `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                                 `role_id` int NOT NULL COMMENT '角色ID',
+                                 `menu_id` int NOT NULL COMMENT '权限（菜单或按钮）ID',
+                                 PRIMARY KEY (`id`),
+                                 KEY `idx_role_id` (`role_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='角色-权限关联表';
 
 -- ----------------------------
 -- Records of sys_user_menu

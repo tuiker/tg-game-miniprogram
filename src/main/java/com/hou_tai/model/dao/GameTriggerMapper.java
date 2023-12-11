@@ -1,9 +1,12 @@
 package com.hou_tai.model.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.hou_tai.controller.pc.vo.GameGeneralizeVo;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hou_tai.controller.pc.dto.DataProfilingPageReqDTO;
+import com.hou_tai.controller.pc.vo.GameGeneralizeVO;
+import com.hou_tai.model.pojo.Game;
 import com.hou_tai.model.pojo.GameTrigger;
-import com.hou_tai.controller.pc.vo.DataOfTimeVo;
+import com.hou_tai.controller.pc.vo.DataOfTimeVO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,12 +28,12 @@ public interface GameTriggerMapper extends BaseMapper<GameTrigger> {
      * @Return
      * @Param type
      **/
-    List<DataOfTimeVo> getNumForSevenDay(Long gameId, int type, Integer category);
+    List<DataOfTimeVO> getNumForSevenDay(Long gameId, int type);
 
     /**
      * 根据触发类型统计游戏导流次数
      * @param type 触发类型
      * @return
      */
-    List<GameGeneralizeVo> getCountAll(int type, Integer orderType);
+    Page<GameGeneralizeVO> getCountAll(Page<Game> page, int type, DataProfilingPageReqDTO reqDTO);
 }

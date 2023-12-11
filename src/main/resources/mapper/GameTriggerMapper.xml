@@ -14,7 +14,7 @@
         GROUP BY category
         ORDER BY category
     </select>
-    <select id="getNumForSevenDay" resultType="com.hou_tai.controller.pc.vo.DataOfTimeVo">
+    <select id="getNumForSevenDay" resultType="com.hou_tai.controller.pc.vo.DataOfTimeVO">
         SELECT COUNT(1) num,
                date_format(create_time, '%Y-%m-%d') time
         FROM
@@ -25,12 +25,11 @@
           <if test="null != gameId">
               AND game_id = #{gameId}
           </if>
-        AND category = #{category,jdbcType=INTEGER}
         AND type = #{type,jdbcType=INTEGER}
         GROUP BY
             time
     </select>
-    <select id="getCountAll" resultType="com.hou_tai.controller.pc.vo.GameGeneralizeVo">
+    <select id="getCountAll" resultType="com.hou_tai.controller.pc.vo.GameGeneralizeVO">
         SELECT
             g.id,
             g.game_name,
@@ -43,14 +42,15 @@
                 LEFT JOIN game_trigger AS gt ON gt.game_id = g.id
                 LEFT JOIN `language` AS l ON g.language_id = l.id
         WHERE
-            gt.type = #{type,jdbcType=INTEGER}
+            g.deleted!=1
+            AND (gt.type = #{type,jdbcType=INTEGER} OR gt.type IS NULL)
         GROUP BY
             g.id
         ORDER BY
-            <if test="null != orderType and orderType == 1 ">
+            <if test="null != reqDTO.orderType and reqDTO.orderType == 1 ">
                 g.create_time DESC
             </if>
-            <if test="null != orderType and orderType == 2 ">
+            <if test="null != reqDTO.orderType and reqDTO.orderType == 2 ">
                 openNum DESC
             </if>
 

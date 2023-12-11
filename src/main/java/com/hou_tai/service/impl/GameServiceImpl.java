@@ -9,12 +9,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import com.hou_tai.common.constant.CommonNum;
+import com.hou_tai.common.enums.CategoryEnums;
 import com.hou_tai.common.util.SecurityUtils;
 import com.hou_tai.common.vo.PageResult;
 import com.hou_tai.controller.mobile.dto.GamePageReqDTO;
 import com.hou_tai.controller.mobile.vo.MobileGameVO;
 import com.hou_tai.controller.pc.dto.GameAddReqDTO;
-import com.hou_tai.controller.pc.dto.GameDto;
+import com.hou_tai.controller.pc.dto.GameDTO;
 import com.hou_tai.controller.pc.dto.GameUpdateReqDTO;
 import com.hou_tai.model.dao.GameMapper;
 import com.hou_tai.model.pojo.*;
@@ -22,7 +23,6 @@ import com.hou_tai.controller.pc.vo.GameVO;
 import com.hou_tai.service.*;
 import com.hou_tai.common.util.SystemNumUtil;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,13 +66,36 @@ public class GameServiceImpl extends ServiceImpl<GameMapper, Game> implements IG
      */
     @Override
     public PageResult<MobileGameVO> pageGameList(GamePageReqDTO reqDTO) {
+
+        Page<Game> page = this.pageGame(reqDTO);
+        List<Game> records = page.getRecords();
+        //查询热门推荐 并且 结果记录数小于分页大小 并且 当前页不是第一页
+        if(CategoryEnums.HOT.getCode().equals(reqDTO.getGameCategory()) 
+                && records.size() < reqDTO.getPageSize() 
+                && reqDTO.getPage() > 1){
+            //补充查询第一页的数据，分页大小 = 正常的分页大小 - 最后一页的数据记录条数
+            GamePageReqDTO supplementPage = new GamePageReqDTO();
+            supplementPage.setGameCategory(reqDTO.getGameCategory());
+            supplementPage.setPage(1);
+            supplementPage.setPageSize(reqDTO.getPageSize() - records.size());
+            //将补充的数据加入到结果中进行返回
+            records.addAll(this.pageGame(supplementPage).getRecords());
+        }
+
+        return new PageResult<>(BeanUtil.copyToList(records, MobileGameVO.class), page.getTotal());
+    }
+
+    /**
+     * 分页查询游戏
+     * @param reqDTO
+     * @return
+     */
+    private Page<Game> pageGame(GamePageReqDTO reqDTO){
         QueryWrapper<Game> gameQueryWrapper = new QueryWrapper<>();
         if(null != reqDTO.getGameCategory()){
             gameQueryWrapper.apply("FIND_IN_SET(" + reqDTO.getGameCategory() + ", game_category)");
         }
-        Page<Game> page = this.page(new Page<>(reqDTO.getPage(), reqDTO.getPageSize()), gameQueryWrapper);
-
-        return new PageResult<>(BeanUtil.copyToList(page.getRecords(), MobileGameVO.class), page.getTotal());
+        return this.page(new Page<>(reqDTO.getPage(), reqDTO.getPageSize()), gameQueryWrapper);
     }
 
     /**
@@ -81,7 +104,7 @@ public class GameServiceImpl extends ServiceImpl<GameMapper, Game> implements IG
      * @param dto 筛选条件
      * @return
      */
-    public Page<GameVO> paginQuery(GameDto dto) {
+    public Page<GameVO> paginQuery(GameDTO dto) {
         MPJLambdaWrapper<Game> mpjLambdaWrapper = new MPJLambdaWrapper<Game>()
                 .selectAll(Game.class)
                 .select("l.language_name, u.user_name AS creator")

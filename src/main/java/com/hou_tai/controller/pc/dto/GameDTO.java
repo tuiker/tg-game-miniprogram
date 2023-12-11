@@ -18,7 +18,7 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Schema(description = "游戏查询入参")
-public class GameDto extends PageDaoEntity {
+public class GameDTO extends PageDaoEntity {
 
     @Schema(description = "游戏id", type = "Long")
     private Long gameId;
