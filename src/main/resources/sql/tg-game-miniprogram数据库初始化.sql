@@ -13,7 +13,7 @@ CREATE TABLE `tg-game-miniprogram`.`game`  (
                                                `language_id` int NOT NULL DEFAULT 0 COMMENT '游戏语言ID',
                                                `game_logo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '0' COMMENT '游戏LOGO',
                                                `game_main_logo` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0' COMMENT '游戏主图',
-                                               `game_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'APK地址',
+                                               `game_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '游戏链接',
                                                `create_id` bigint NULL DEFAULT NULL COMMENT '创建用户ID',
                                                `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
                                                `update_id` bigint NULL DEFAULT NULL COMMENT '更新用户ID',
