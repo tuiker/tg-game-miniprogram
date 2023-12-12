@@ -95,6 +95,7 @@ public class GameServiceImpl extends ServiceImpl<GameMapper, Game> implements IG
         if(null != reqDTO.getGameCategory()){
             gameQueryWrapper.apply("FIND_IN_SET(" + reqDTO.getGameCategory() + ", game_category)");
         }
+        gameQueryWrapper.orderByDesc("update_time");
         return this.page(new Page<>(reqDTO.getPage(), reqDTO.getPageSize()), gameQueryWrapper);
     }
 

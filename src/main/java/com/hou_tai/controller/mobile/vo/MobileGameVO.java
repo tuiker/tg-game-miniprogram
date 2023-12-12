@@ -44,4 +44,9 @@ public class MobileGameVO {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
+
+    @Schema(title = "修改时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updateTime;
 }
